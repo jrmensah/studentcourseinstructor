@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Show All Records</title>
+</head>
+<body>
+<li><a href="/addstudentform">Add a Student </a> </li>
+<li><a href="show.html">Show All Missing Pets</a></li>
+<li><a href="show.html">Delete Pet</a></li>
+
+
+<a href="/">Show all Pets</a><br/>
+<label>Pet Name:</label><span th:text="${pet.name}"></span><br/>
+<label>Age:</label><span th:text="${pet.age}"></span><br/>
+<label>Type of Animal:</label><span th:text="${pet.type}"></span><br/>
+<label>Breed:</label><span th:text="${pet.breed}"></span><br/>
+<label>Colour:</label><span th:text="${pet.colour}"></span><br/>
+<label>Distinguishing Features:</label><span th:text="${pet.features}"></span><br/>
+<label>Owner's Phone Number:</label><span th:text="${pet.phoneNum}"></span><br/>
+<label>Current Status:</label><span th:text="${pet.status}"></span><br/>
+
+<a th:href="@{/delete/{id}(id=${pet.id})}"> Delete this pet</a>
+<a th:href="@{/update/{id}(id=${pet.id})}"> Update pet status</a>
+</body>
+</html>

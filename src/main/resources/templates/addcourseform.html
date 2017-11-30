@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add a Course</title>
+</head>
+<body>
+<h1 class="text-center">Add Course</h1>
+
+    <form th:action="@{/process}" th:object="${course}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br/>
+        <label>Title: </label><input type="text" th:field="*{title}"/>
+    </form>
+
+</body>
+</html>
