@@ -1,7 +1,11 @@
 package me.jrmensah.studentcourseinstructor;
 
 
+import me.jrmensah.studentcourseinstructor.models.Course;
+import me.jrmensah.studentcourseinstructor.models.Instructor;
 import me.jrmensah.studentcourseinstructor.models.Student;
+import me.jrmensah.studentcourseinstructor.repositories.CourseRepository;
+import me.jrmensah.studentcourseinstructor.repositories.InstructorRepository;
 import me.jrmensah.studentcourseinstructor.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +21,13 @@ public class MainController {
 
     @Autowired
     StudentRepository studentRepository;
+    CourseRepository courseRepository;
+    InstructorRepository instructorRepository;
 
     @RequestMapping("/")
     public String showIndex(Model model){
         model.addAttribute("students", studentRepository.findAll());
-        return "studentslist";
+        return "index";
     }
 
     @GetMapping("/add")
@@ -36,7 +42,7 @@ public class MainController {
             return "addstudentform";
         }
         studentRepository.save(student);
-        return "redirect:/";
+        return "studentslist";
         }
     }
 
@@ -48,29 +54,61 @@ public class MainController {
     }
 
     @PostMapping("/addstudent")
-    public String processStudent(@Valid@ModelAttribute("students") Student student, BindingResult result){
+    public String processStudent(@Valid@ModelAttribute("students") Student student, BindingResult result, Model model)
         {
             if(result.hasErrors()){
                 return "addstudentform";
             }
             studentRepository.save(student);
-            return "studentlist";
+            model.addAttribute("allstudents", studentRepository.findAll());
+            return "studentslist";
         }
+
+    @GetMapping("/addcourse")
+    public String addCourse(Model model){
+        Course courses = new Course();
+        model.addAttribute("courses", courses);
+        return "addcourseform";
     }
-    @RequestMapping("/detail/{id}")
-    public String showStudent(@PathVariable("id") long id, Model model){
-        model.addAttribute("students", studentRepository.findOne(id));
-        return "show";
+    @PostMapping("/addcourse")
+    public String processCourse(@Valid@ModelAttribute("courses") Course course, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addcourseform";
+        }
+        courseRepository.save(course);
+        return "studentslist";
     }
-    @RequestMapping("/update/{id}")
-    public String updatePet(@PathVariable("id") long id, Model model){
-        model.addAttribute("students", studentRepository.findOne(id));
-        return "addstudentform";
+    @GetMapping("/addinstructor")
+    public String addInstructor(Model model){
+        Course courses = new Course();
+        model.addAttribute("instructors", courses);
+        return "addinstructorform";
     }
-    @RequestMapping("/delete/{id}")
-    public String delPet(@PathVariable("id") long id){
-        studentRepository.delete(id);
-        return "redirect:/";
+    @PostMapping("/addinstructor")
+    public String processInstructor(@Valid@ModelAttribute("instructors") Instructor instructor, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addinstructorform";
+        }
+        instructorRepository.save(instructor);
+        return "studentslist";
     }
 
-}
+
+//    @RequestMapping("/detail/{id}")
+//    public String showStudent(@PathVariable("id") long id, Model model){
+//        model.addAttribute("students", studentRepository.findOne(id));
+//        return "show";
+//    }
+//    @RequestMapping("/update/{id}")
+//    public String updatePet(@PathVariable("id") long id, Model model){
+//        model.addAttribute("students", studentRepository.findOne(id));
+//        return "addstudentform";
+//    }
+//    @RequestMapping("/delete/{id}")
+//    public String delPet(@PathVariable("id") long id){
+//        studentRepository.delete(id);
+//        return "redirect:/";
+//    }
+
+    }
+

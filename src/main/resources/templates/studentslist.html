@@ -18,14 +18,15 @@
         <th>Email</th>
         <br/>
     </tr>
-    <tr th:each="students : ${students}">
-        <td th:text="${students.firstName}"></td>
+    <h3 class="text-center">Students</h3>
+    <tr th:each="student : ${allstudents}">
+        <td th:text="${student.firstName}"></td>
         <br/>
-        <td th:text="${students.lastName}"></td>
+        <td th:text="${student.lastName}"></td>
         <br/>
-        <td th:text="${students.contactNum}"></td>
+        <td th:text="${student.contactNum}"></td>
         <br/>
-        <td th:text="${students.email}"></td>
+        <td th:text="${student.email}"></td>
         <br/>
 
         <!--<td>Actions-->

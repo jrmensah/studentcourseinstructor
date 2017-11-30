@@ -2,6 +2,7 @@ package me.jrmensah.studentcourseinstructor.models;
 
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,9 +23,10 @@ public class Student {
     @Size(min = 3)
     private String lastName;
     @NotNull
+    @Size(min=3)
     private String contactNum;
 
-    @NotNull
+    @NotEmpty
     @Email
     private String email;
 
