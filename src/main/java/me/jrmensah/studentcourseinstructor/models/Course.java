@@ -1,4 +1,4 @@
-package me.jrmensah.studentcourseinstructor;
+package me.jrmensah.studentcourseinstructor.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
