@@ -23,7 +23,7 @@ public class Instructor {
     @NotNull
     private String email;
 
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany()
     private Set<Instructor> instructors;
 
     public Instructor() {

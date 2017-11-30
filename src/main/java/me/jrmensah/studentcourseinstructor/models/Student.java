@@ -1,8 +1,11 @@
 package me.jrmensah.studentcourseinstructor.models;
 
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -13,12 +16,16 @@ public class Student {
     private long id;
 
     @NotNull
+    @Size(min = 2)
     private String firstName;
     @NotNull
+    @Size(min = 3)
     private String lastName;
     @NotNull
     private String contactNum;
+
     @NotNull
+    @Email
     private String email;
 
     @ManyToMany()
