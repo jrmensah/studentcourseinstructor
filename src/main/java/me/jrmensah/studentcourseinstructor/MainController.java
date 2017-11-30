@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+
 @Controller
 public class MainController {
 
@@ -22,21 +23,41 @@ public class MainController {
 
     @RequestMapping("/")
     public String showIndex(Model model){
+        model.addAttribute("studentslist", studentRepository);
         return "index";
     }
 
     @GetMapping("/add")
-    public String addStudent(Model model){
-        Student student = new Student();
-        model.addAttribute("students", student);
-        return "addstudent";
+    public String addStudentForm(Model model){
+        model.addAttribute("students", new Student());
+        return "addstudentform";
     }
     @PostMapping("/process")
-    public String processStudent(@Valid Student student, BindingResult result){
-        if (result.hasErrors()) {
-            return "addstudent";
+    public String processStudentForm(@Valid Student student, BindingResult result){
+    {
+        if(result.hasErrors()){
+            return "addstudentform";
         }
         studentRepository.save(student);
         return "redirect:/";
+        }
+    }
+
+    @GetMapping("/addstudent")
+    public String addStudent(Model model) {
+        Student students = new Student();
+        model.addAttribute("students", students);
+        return "addstudentform";
+    }
+
+    @PostMapping("/addstudent")
+    public String processStudent(@Valid@ModelAttribute("students") Student student, BindingResult result){
+        {
+            if(result.hasErrors()){
+                return "addstudentform";
+            }
+            studentRepository.save(student);
+            return "redirect:/";
+        }
     }
 }
