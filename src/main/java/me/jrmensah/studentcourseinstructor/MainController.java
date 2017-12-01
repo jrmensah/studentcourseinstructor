@@ -28,9 +28,9 @@ public class MainController {
 
     @RequestMapping("/")
     public String showIndex(Model model){
-        model.addAttribute("students", studentRepository.findAll());
-        model.addAttribute("courses", courseRepository.findAll());
-        model.addAttribute("instructors", instructorRepository.findAll());
+        model.addAttribute("allstudents", studentRepository.findAll());
+        model.addAttribute("allcourses", courseRepository.findAll());
+        model.addAttribute("allinstructors", instructorRepository.findAll());
         return "index";
     }
 
@@ -102,20 +102,20 @@ public class MainController {
             return "instructorlist";
         }
     }
-    @GetMapping("/show")
+    @RequestMapping("/show")
     public String showAllRecords(Model model){
-        model.addAttribute("students", studentRepository.findAll());
-        model.addAttribute("courses", courseRepository.findAll());
-        model.addAttribute("instructors", instructorRepository.findAll());
-        return "show";
-    }
-    @PostMapping("/show")
-    public String processAllRecords(@Valid Student student, Course course, Instructor instructor, BindingResult result, Model model){
         model.addAttribute("allstudents", studentRepository.findAll());
         model.addAttribute("allcourses", courseRepository.findAll());
         model.addAttribute("allinstructors", instructorRepository.findAll());
         return "show";
     }
+//    @PostMapping("/show")
+//    public String processAllRecords(@Valid Student student, Course course, Instructor instructor, BindingResult result, Model model){
+//        model.addAttribute("allstudents", studentRepository.findAll());
+//        model.addAttribute("allcourses", courseRepository.findAll());
+//        model.addAttribute("allinstructors", instructorRepository.findAll());
+//        return "show";
+//    }
 
 }
 
