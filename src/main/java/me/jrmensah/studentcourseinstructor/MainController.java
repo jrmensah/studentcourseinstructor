@@ -109,32 +109,10 @@ public class MainController {
         model.addAttribute("allinstructors", instructorRepository.findAll());
         return "show";
     }
-//    @PostMapping("/show")
-//    public String processAllRecords(@Valid Student student, Course course, Instructor instructor, BindingResult result, Model model){
-//        model.addAttribute("allstudents", studentRepository.findAll());
-//        model.addAttribute("allcourses", courseRepository.findAll());
-//        model.addAttribute("allinstructors", instructorRepository.findAll());
-//        return "show";
-//    }
 
 }
 
 
-//    @RequestMapping("/detail/{id}")
-//    public String showStudent(@PathVariable("id") long id, Model model){
-//        model.addAttribute("students", studentRepository.findOne(id));
-//        return "show";
-//    }
-//    @RequestMapping("/update/{id}")
-//    public String updatePet(@PathVariable("id") long id, Model model){
-//        model.addAttribute("students", studentRepository.findOne(id));
-//        return "addstudentform";
-//    }
-//    @RequestMapping("/delete/{id}")
-//    public String delPet(@PathVariable("id") long id){
-//        studentRepository.delete(id);
-//        return "redirect:/";
-//    }
 
 
 
