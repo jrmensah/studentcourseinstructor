@@ -130,7 +130,21 @@ public class MainController {
         model.addAttribute("student",studentRepository.findAll());
         return "redirect:/show";
     }
-
+    @GetMapping("/addinstructortocourse/{id}")
+    public String addInstuctorsToCourse(@PathVariable("id")Long instructorId, Model model){
+        model.addAttribute("allcourses",courseRepository.findAll());
+        model.addAttribute("instructor",instructorRepository.findOne(new Long(instructorId)));
+        return "addinstructortocourse";
+    }
+    @PostMapping("/addinstructortocourse/")
+    public String addInstructorsToCourse(@RequestParam("instructor")String instructorId,@RequestParam("courseid")String courseId, Model model){
+        Instructor instructor = instructorRepository.findOne(new Long(instructorId));
+        instructor.addCourse(courseRepository.findOne(new Long(courseId)));
+        instructorRepository.save(instructor);
+        model.addAttribute("allcourses",courseRepository.findAll());
+        model.addAttribute("instructor",instructorRepository.findAll());
+        return "redirect:/show";
+    }
 }
 
 
