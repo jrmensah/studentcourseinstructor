@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Students to Courses</title>
+</head>
+<body>
+
+<a href="/addstudent">Add a Student </a>
+<a href="/addcourse">Add a Course</a>
+<a href="/addinstructor">Add an Instructor</a>
+<a href="/show">Show all Records</a>
+<a href="#">Add Student to a Course</a>
+
+<form th:action="@{/addstudenttocourse/(studentid=${student.id})}" method="post">
+    <input type="text" th:value="${student.id}" name="student">
+    <label th:inline="text">Adding Courses for [[${student.firstName}]] [[${student.lastName}]].</label>
+
+    <select name="courseid">
+        <option th:each="acourse:${allcourses}" th:value="${acourse.id}" th:text="${acourse.title}"></option>
+    </select>
+
+    <input type="submit" value="Add Student">
+</form>
+
+</body>
+</html>

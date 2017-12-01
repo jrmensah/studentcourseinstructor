@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,16 +16,28 @@ public class Instructor {
     @GeneratedValue
     private long id;
     @NotNull
+    @Size(min = 3)
     private String firstName;
     @NotNull
+    @Size(min = 3)
     private String lastName;
     @NotNull
+    @Size(min = 3)
     private String contactNum;
     @NotNull
+    @Size(min = 3)
     private String email;
 
-//    @ManyToMany()
-////    private Set<Instructor> instructors;
+    @ManyToMany()
+    private Set<Course> courses;
+
+    public Instructor(String firstName, String lastName, String contactNum, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.contactNum = contactNum;
+        this.email = email;
+        this.courses = new HashSet<Course>();
+    }
 
     public Instructor() {
 //        instructors = new HashSet<Instructor>();
@@ -78,7 +91,7 @@ public class Instructor {
 //        this.instructors = instructors;
 //    }
 //
-//    public void addInstructor (Instructor i){
-//        instructors.add(i);
-//    }
+    public void addCourse (Course c){
+        this.courses.add(c);
+    }
 }

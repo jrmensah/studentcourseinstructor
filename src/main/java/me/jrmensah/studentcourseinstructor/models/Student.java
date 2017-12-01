@@ -34,8 +34,19 @@ public class Student {
     @ManyToMany()
     private Set<Course> courses;
 
+
+    public Student(String firstName, String lastName, String contactNum, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.contactNum = contactNum;
+        this.email = email;
+        this.courses = new HashSet<Course>();
+    }
+
+
+
     public Student() {
-        this. courses = new HashSet<>();
+
     }
 
     public long getId() {

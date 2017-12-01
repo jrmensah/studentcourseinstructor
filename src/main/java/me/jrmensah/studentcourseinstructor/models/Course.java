@@ -29,6 +29,18 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     private Set<Student> students;
 
+    @ManyToMany(mappedBy = "courses")
+    private Set<Instructor> instructors;
+
+
+    public Course(String title, String courseNum, String description) {
+        this.title = title;
+        this.courseNum = courseNum;
+        this.description = description;
+        instructors=new HashSet<Instructor>();
+        students = new HashSet<Student>();
+    }
+
     public Course() {
         students = new HashSet<Student>();
     }
@@ -73,7 +85,7 @@ public class Course {
         this.students = students;
     }
 
-    public void addStudent(Student s){
-        students.add(s);
-    }
+//    public void addStudent(Student s){
+//        students.add(s);
+//    }
 }

@@ -105,9 +105,30 @@ public class MainController {
     @RequestMapping("/show")
     public String showAllRecords(Model model){
         model.addAttribute("allstudents", studentRepository.findAll());
+        System.out.println("All Students:"+studentRepository.count());
+
         model.addAttribute("allcourses", courseRepository.findAll());
+        System.out.println("All Courses:"+courseRepository.count());
+
         model.addAttribute("allinstructors", instructorRepository.findAll());
+        System.out.println("All Instructors:" +instructorRepository.count());
         return "show";
+    }
+
+    @GetMapping("/addstudenttocourse/{id}")
+    public String addStudentsToCourse(@PathVariable("id")Long studentId, Model model){
+        model.addAttribute("allcourses",courseRepository.findAll());
+        model.addAttribute("student",studentRepository.findOne(new Long(studentId)));
+        return "addstudenttocourse";
+    }
+    @PostMapping("/addstudenttocourse/")
+    public String addStudentsToCourse(@RequestParam("student")String studentId,@RequestParam("courseid")String courseId, Model model){
+        Student astudent = studentRepository.findOne(new Long(studentId));
+        astudent.addCourse(courseRepository.findOne(new Long(courseId)));
+        studentRepository.save(astudent);
+        model.addAttribute("allcourses",courseRepository.findAll());
+        model.addAttribute("student",studentRepository.findAll());
+        return "redirect:/show";
     }
 
 }
