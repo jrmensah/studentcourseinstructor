@@ -46,6 +46,7 @@ public class MainController {
         }
     }
 
+
     @GetMapping("/addstudent")
     public String addStudent(Model model) {
         Student students = new Student();
@@ -61,7 +62,7 @@ public class MainController {
             }
             studentRepository.save(student);
             model.addAttribute("allstudents", studentRepository.findAll());
-            return "studentslist";
+            return "recordlist";
         }
 
     @GetMapping("/addcourse")
@@ -71,12 +72,13 @@ public class MainController {
         return "addcourseform";
     }
     @PostMapping("/addcourse")
-    public String processCourse(@Valid@ModelAttribute("courses") Course course, BindingResult result) {
+    public String processCourse(@Valid@ModelAttribute("courses") Course course, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "addcourseform";
         }
         courseRepository.save(course);
-        return "studentslist";
+        model.addAttribute("allcourses", courseRepository.findAll());
+        return "recordlist";
     }
     @GetMapping("/addinstructor")
     public String addInstructor(Model model){
@@ -85,12 +87,13 @@ public class MainController {
         return "addinstructorform";
     }
     @PostMapping("/addinstructor")
-    public String processInstructor(@Valid@ModelAttribute("instructors") Instructor instructor, BindingResult result) {
+    public String processInstructor(@Valid@ModelAttribute("instructors") Instructor instructor, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "addinstructorform";
         }
         instructorRepository.save(instructor);
-        return "studentslist";
+        model.addAttribute("allinstructors", instructorRepository.findAll());
+        return "recordlist";
     }
 
 

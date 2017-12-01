@@ -5,13 +5,38 @@
     <title>Add a Course</title>
 </head>
 <body>
+<a href="/addstudent">Add a Student</a>
+<a href="#">Add a Course</a>
+<a href="/addinstructor">Add an Instructor</a>
+<a href="/recordlist">Record List</a>
+
 <h1 class="text-center">Add Course</h1>
+    <div class="container">
+        <div class="col-md-6 col-md-offset-2">
 
-    <form th:action="@{/process}" th:object="${course}" method="post">
+    <form th:action="@{/addcourse}" th:object="${courses}" method="post">
         <input type="hidden" th:field="*{id}"/>
-        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br/>
-        <label>Title: </label><input type="text" th:field="*{title}"/>
-    </form>
 
+        <div class="form-group">
+        <label>Title:</label>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br/>
+        <input class="form-control" type="text" th:field="*{title}" placeholder="Title of Course"/>
+        </div>
+
+        <div class="form-group">
+        <label>Course Number:</label>
+        <span th:if="${#fields.hasErrors('courseNum')}" th:errors="*{courseNum}"></span><br/>
+        <input class="form-control" type="text" th:field="*{courseNum}"/>
+        </div>
+
+        <div class="form-group">
+        <label>Description:</label>
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br/>
+        <input class="form control" type="text" th:field="*{description}"/>
+        </div>
+
+    </form>
+    </div>
+    </div>
 </body>
 </html>

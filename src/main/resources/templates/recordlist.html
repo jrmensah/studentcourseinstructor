@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Students List</title>
+</head>
+<body>
+<h1 class="text-center">Record List</h1>
+<a href="/addstudent">Add a Student</a>
+<a href="/addcourse">Add a Course</a>
+<a href="/addinstructor">Add an Instructor</a>
+<a href="#">Record List</a>
+
+<h3 class="text-center">Students</h3>
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+        </tr>
+
+
+        <tr th:each="student : ${allstudents}">
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.contactNum}"></td>
+            <td th:text="${student.email}"></td>
+
+
+            <!--<td>Actions-->
+                <!--<a th:href="@{/update/{id} (id=${students.id})}">Update</a>- -->
+                <!--<a th:href="@{/detail/{id} (id=${students.id})}">Details</a>- -->
+                <!--<a th:href="@{/delete/{id} (id=${students.id})}">Delete</a>-->
+            <!--</td>-->
+        </tr>
+    </table>
+
+<h3 class="text-center">Courses</h3>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Course Number</th>
+            <th>Description </th>
+        </tr>
+
+    <table>
+
+        <tr th:each="course : ${allcourses}">
+            <td th:text="${course.title}"></td>
+            <td th:text="${course.courseNum}"></td>
+            <td th:text="${course.description}"></td>
+        </tr>
+
+    </table>
+
+
+        <h3 class="text-center">Instructors</h3>
+        <table>
+
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+            </tr>
+
+
+    <tr th:each="instructor : ${allinstructors}">
+        <td th:text="${instructor.firstName}"></td>
+        <td th:text="${instructor.lastName}"></td>
+        <td th:text="${instructor.contactNum}"></td>
+        <td th:text="${instructor.email}"></td>
+    </tr>
+</table>
+</table>
+</table>
+</body>
+</html>
