@@ -26,14 +26,16 @@
         <div class="form-group">
         <label>Course Number:</label>
         <span th:if="${#fields.hasErrors('courseNum')}" th:errors="*{courseNum}"></span><br/>
-        <input class="form-control" type="text" th:field="*{courseNum}"/>
+        <input class="form-control" type="text" th:field="*{courseNum}" placeholder="Course Number"/>
         </div>
 
         <div class="form-group">
         <label>Description:</label>
         <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br/>
-        <input class="form control" type="text" th:field="*{description}"/>
+        <input class="form control" type="text" th:field="*{description}" placeholder="Description of Course"/>
         </div>
+
+        <input call="btn btn-default" type="submit" value="Add Course"/>
 
     </form>
     </div>
