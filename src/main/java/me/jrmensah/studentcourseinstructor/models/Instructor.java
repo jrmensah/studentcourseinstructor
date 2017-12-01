@@ -23,11 +23,11 @@ public class Instructor {
     @NotNull
     private String email;
 
-    @ManyToMany()
-    private Set<Instructor> instructors;
+//    @ManyToMany()
+////    private Set<Instructor> instructors;
 
     public Instructor() {
-        instructors = new HashSet<Instructor>();
+//        instructors = new HashSet<Instructor>();
     }
 
     public long getId() {
@@ -70,15 +70,15 @@ public class Instructor {
         this.email = email;
     }
 
-    public Set<Instructor> getInstructors() {
-        return instructors;
-    }
-
-    public void setInstructors(Set<Instructor> instructors) {
-        this.instructors = instructors;
-    }
-
-    public void addInstructor (Instructor i){
-        instructors.add(i);
-    }
+//    public Set<Instructor> getInstructors() {
+//        return instructors;
+//    }
+//
+//    public void setInstructors(Set<Instructor> instructors) {
+//        this.instructors = instructors;
+//    }
+//
+//    public void addInstructor (Instructor i){
+//        instructors.add(i);
+//    }
 }

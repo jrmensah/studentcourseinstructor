@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,10 +17,13 @@ public class Course {
     private long id;
 
     @NotNull
+    @Size(min = 3)
     private String title;
     @NotNull
+    @Size(min = 3)
     private String courseNum;
     @NotNull
+    @Size(min = 3)
     private String description;
 
     @ManyToMany(mappedBy = "courses")

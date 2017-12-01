@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -32,6 +33,10 @@ public class Student {
 
     @ManyToMany()
     private Set<Course> courses;
+
+    public Student() {
+        this. courses = new HashSet<>();
+    }
 
     public long getId() {
         return id;

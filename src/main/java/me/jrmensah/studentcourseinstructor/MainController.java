@@ -21,80 +21,103 @@ public class MainController {
 
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
     CourseRepository courseRepository;
+    @Autowired
     InstructorRepository instructorRepository;
 
     @RequestMapping("/")
     public String showIndex(Model model){
         model.addAttribute("students", studentRepository.findAll());
+        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("instructors", instructorRepository.findAll());
         return "index";
     }
 
     @GetMapping("/add")
+    public String addRecordForm(Model model){
+        model.addAttribute("students", new Student());
+        model.addAttribute("courses", new Course());
+        model.addAttribute("instructors", new Instructor());
+        return "addstudentlist";
+    }
+    @PostMapping("/process")
+    public String processRecordForm(@Valid Student student, Course course, Instructor instructor, BindingResult result){
+    {
+        if(result.hasErrors()){
+            return "index";
+        }
+        studentRepository.save(student);
+        courseRepository.save(course);
+        instructorRepository.save(instructor);
+        return "recordlist";
+        }
+    }
+    @GetMapping("/addstudent")
     public String addStudentForm(Model model){
         model.addAttribute("students", new Student());
         return "addstudentform";
     }
-    @PostMapping("/process")
-    public String processStudentForm(@Valid Student student, BindingResult result){
-    {
-        if(result.hasErrors()){
-            return "addstudentform";
-        }
-        studentRepository.save(student);
-        return "studentslist";
-        }
-    }
-
-
-    @GetMapping("/addstudent")
-    public String addStudent(Model model) {
-        Student students = new Student();
-        model.addAttribute("students", students);
-        return "addstudentform";
-    }
-
     @PostMapping("/addstudent")
-    public String processStudent(@Valid@ModelAttribute("students") Student student, BindingResult result, Model model)
+    public String processStudentForm(@Valid Student student, BindingResult result, Model model){
         {
             if(result.hasErrors()){
                 return "addstudentform";
             }
             studentRepository.save(student);
-            model.addAttribute("allstudents", studentRepository.findAll());
-            return "recordlist";
+            model.addAttribute("allstudents",studentRepository.findAll());
+            return "studentlist";
         }
-
+    }
     @GetMapping("/addcourse")
-    public String addCourse(Model model){
-        Course courses = new Course();
-        model.addAttribute("courses", courses);
+    public String addCourseForm(Model model){
+        model.addAttribute("courses", new Course());
         return "addcourseform";
     }
     @PostMapping("/addcourse")
-    public String processCourse(@Valid@ModelAttribute("courses") Course course, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "addcourseform";
+    public String processCourseForm(@Valid Course course, BindingResult result, Model model){
+        {
+            if(result.hasErrors()){
+                return "addcourseform";
+            }
+            courseRepository.save(course);
+            model.addAttribute("allcourses",courseRepository.findAll());
+            return "courselist";
         }
-        courseRepository.save(course);
-        model.addAttribute("allcourses", courseRepository.findAll());
-        return "recordlist";
     }
+
     @GetMapping("/addinstructor")
-    public String addInstructor(Model model){
-        Course courses = new Course();
-        model.addAttribute("instructors", courses);
+    public String addInstructorForm(Model model){
+        model.addAttribute("instructors", new Instructor());
         return "addinstructorform";
     }
     @PostMapping("/addinstructor")
-    public String processInstructor(@Valid@ModelAttribute("instructors") Instructor instructor, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "addinstructorform";
+    public String processInstructorForm(@Valid Instructor instructor, BindingResult result, Model model){
+        {
+            if(result.hasErrors()){
+                return "addinstructorform";
+            }
+            instructorRepository.save(instructor);
+            model.addAttribute("allinstructors", instructorRepository.findAll());
+            return "instructorlist";
         }
-        instructorRepository.save(instructor);
-        model.addAttribute("allinstructors", instructorRepository.findAll());
-        return "recordlist";
     }
+    @GetMapping("/show")
+    public String showAllRecords(Model model){
+        model.addAttribute("students", studentRepository.findAll());
+        model.addAttribute("courses", courseRepository.findAll());
+        model.addAttribute("instructors", instructorRepository.findAll());
+        return "show";
+    }
+    @PostMapping("/show")
+    public String processAllRecords(@Valid Student student, Course course, Instructor instructor, BindingResult result, Model model){
+        model.addAttribute("allstudents", studentRepository.findAll());
+        model.addAttribute("allcourses", courseRepository.findAll());
+        model.addAttribute("allinstructors", instructorRepository.findAll());
+        return "show";
+    }
+
+}
 
 
 //    @RequestMapping("/detail/{id}")
@@ -113,5 +136,5 @@ public class MainController {
 //        return "redirect:/";
 //    }
 
-    }
+
 
