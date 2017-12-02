@@ -32,19 +32,19 @@ public class DataLoader implements CommandLineRunner{
         Course course2 = new Course("SpringBoot","101","IntelliJ");
         courseRepository.save(course2);
 
-        Student student = new Student("Jerilyn","Mensah","301-908-9841","jm@gmail.com");
+        Student student = new Student("Jerilyn","Mensah","301-908-9841","jm@gmail.com","Java");
         student.addCourse(course);
         studentRepository.save(student);
 
-        Student student2 = new Student("Lisa","Simpson","555-123-1234","lisa@fox.net");
+        Student student2 = new Student("Lisa","Simpson","555-123-1234","lisa@fox.net","Java");
         student2.addCourse(course2);
         studentRepository.save(student2);
 
-        Instructor instructor = new Instructor("Dave","Wolf","555-876-8726","dave45678@gmail.com");
+        Instructor instructor = new Instructor("Dave","Wolf","555-876-8726","dave45678@gmail.com","SpringBoot");
         instructor.addCourse(course);
         instructorRepository.save(instructor);
 
-        Instructor instructor2 = new Instructor("Afua","Anokmah","555-867-4923","afua@gmail.com");
+        Instructor instructor2 = new Instructor("Afua","Anokmah","555-867-4923","afua@gmail.com","SpringBoot");
         instructor.addCourse(course);
         instructorRepository.save(instructor2);
 

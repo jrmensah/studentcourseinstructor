@@ -27,20 +27,24 @@ public class Instructor {
     @NotNull
     @Size(min = 3)
     private String email;
+    @NotNull
+    @Size(min=3)
+    private String courseTaught;
 
     @ManyToMany()
     private Set<Course> courses;
 
-    public Instructor(String firstName, String lastName, String contactNum, String email) {
+
+    public Instructor(String firstName, String lastName, String contactNum, String email, String courseTaught) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactNum = contactNum;
         this.email = email;
+        this.courseTaught = courseTaught;
         this.courses = new HashSet<Course>();
     }
 
     public Instructor() {
-//        instructors = new HashSet<Instructor>();
     }
 
     public long getId() {
@@ -83,15 +87,15 @@ public class Instructor {
         this.email = email;
     }
 
-//    public Set<Instructor> getInstructors() {
-//        return instructors;
-//    }
-//
-//    public void setInstructors(Set<Instructor> instructors) {
-//        this.instructors = instructors;
-//    }
-//
     public void addCourse (Course c){
         this.courses.add(c);
+    }
+
+    public String getCourseTaught() {
+        return courseTaught;
+    }
+
+    public void setCourseTaught(String courseTaught) {
+        this.courseTaught = courseTaught;
     }
 }

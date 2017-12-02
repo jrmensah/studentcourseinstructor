@@ -31,18 +31,22 @@ public class Student {
     @Email
     private String email;
 
+    @NotNull
+    @Size(min=3)
+    private String courseTaken;
+
     @ManyToMany()
     private Set<Course> courses;
 
 
-    public Student(String firstName, String lastName, String contactNum, String email) {
+    public Student(String firstName, String lastName, String contactNum, String email, String courseTaken) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactNum = contactNum;
         this.email = email;
+        this.courseTaken = courseTaken;
         this.courses = new HashSet<Course>();
     }
-
 
 
     public Student() {
@@ -99,5 +103,13 @@ public class Student {
 
     public void addCourse(Course c){
         this.courses.add(c);
+    }
+
+    public String getCourseTaken() {
+        return courseTaken;
+    }
+
+    public void setCourseTaken(String courseTaken) {
+        this.courseTaken = courseTaken;
     }
 }
